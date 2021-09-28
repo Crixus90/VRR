@@ -1,0 +1,29 @@
+<form class="signup-form" action="/auth/signup" method="POST">
+  <label for="">Username</label>
+  <input type="text" name="username" value="{{username}}" />
+  <br />
+  <label for="">Email</label>
+  <input type="email" name="email" value="{{email}}" />
+  <br />
+  <label for="">Password</label>
+  <input type="password" name="password" />
+  <br />
+  <label for="">VR Headset</label>
+  <br />
+  <select name="headset">
+    <option value="" disabled selected>Select your headset </option>
+    <option value="Rift">Rift</option>
+    <option value="Index">Index</option>
+    <option value="Quest">Quest</option>
+    <option value="Quest2">Quest2</option>
+    <option value="Other">I don't have one...😞 </option>
+  </select>
+  <br />
+
+  <button type="submit">Sign up</button>
+</form>
+<div class="error-message">
+  {{#if errorMessage}}
+    <p style="color: red">{{errorMessage}}</p>
+  {{/if}}
+</div>
