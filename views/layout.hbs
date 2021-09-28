@@ -16,8 +16,13 @@
           <li><a href="/">Home</a></li>
           <li><a href="/">News</a></li>
           <li><a href="/"><img src="/images/vrrlogo.png" alt="logo" /></a></li>
-          <li><a href="/auth/login">Log in</a></li>
-          <li><a href="/auth/signup">Sign up</a></li>
+          {{#if user}}
+            <li><a href="/auth/login">Profile</a></li>
+            <li><a href="/auth/signup">Log Out</a></li>
+          {{else}}
+            <li><a href="/auth/login">Log In</a></li>
+            <li><a href="/auth/signup">Sign up</a></li>
+          {{/if}}
         </ui>
       </nav>
     </header>
