@@ -6,18 +6,20 @@ const commentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    user: String,
-    comments: [
-      {
-        type: String,
-      },
-    ],
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    post: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Comment = mongoose.model("Comment", postSchema);
+const Comment = mongoose.model("Comment", commentSchema);
 
 module.exports = Comment;

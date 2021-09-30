@@ -4,10 +4,10 @@ const bcrypt = require("bcrypt");
 const isNotLoggedIn = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+//signup
 router.get("/signup", isNotLoggedIn, (req, res) => {
   res.render("auth/signup");
 });
-
 router.post("/signup", isNotLoggedIn, (req, res) => {
   const { username, email, password, headset } = req.body;
 
@@ -86,11 +86,12 @@ router.post("/signup", isNotLoggedIn, (req, res) => {
       });
     });
 });
+//signup
 
+//login
 router.get("/login", isNotLoggedIn, (req, res) => {
   res.render("auth/login");
 });
-
 router.post("/login", isNotLoggedIn, (req, res) => {
   const { username, password } = req.body;
 
@@ -120,13 +121,15 @@ router.post("/login", isNotLoggedIn, (req, res) => {
     res.redirect("/");
   });
 });
+//login
 
+//logout
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.log(err);
     }
-    return res, redirect("/");
+    return res.redirect("/");
   });
 });
 

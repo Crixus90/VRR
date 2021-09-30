@@ -1,18 +1,20 @@
 const mongoose = require("mongoose");
 
-const articleSchema = new mongoose.Schema(
+const postSchema = new mongoose.Schema(
   {
-    image: {
-      type: String,
-    },
-    header: {
+    text: {
       type: String,
       required: true,
     },
-    text: String,
-    comments: [
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    title: String,
+    hashtag: [
       {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Hashtag",
       },
     ],
   },
@@ -21,6 +23,6 @@ const articleSchema = new mongoose.Schema(
   }
 );
 
-const Article = mongoose.model("Article", postSchema);
+const Post = mongoose.model("Post", postSchema);
 
-module.exports = Article;
+module.exports = Post;

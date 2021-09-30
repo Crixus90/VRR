@@ -5,20 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/layout-style.css" />
   </head>
 
   <body>
 
     <header>
-      <nav>
+      <nav class="links-container">
+        <div class="logo-search">
+          <a href="/"><img
+              src="/images/vrrlogo.png"
+              alt="logo"
+              height="50px"
+              width="50px"
+            /></a>
+          <div class="searchbar">
+            <form action="">
+              <input type="text" name="" />
+              <button type="submit">🔍</button>
+            </form>
+          </div>
+        </div>
+
         <ui class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/">News</a></li>
-          <li><a href="/"><img src="/images/vrrlogo.png" alt="logo" /></a></li>
           {{#if user}}
-            <li><a href="/auth/login">Profile</a></li>
-            <li><a href="/auth/signup">Log Out</a></li>
+            <li><a class="create-post-btn" href="/">Create Post</a></li>
+            <li><a href="/auth/logout">Log Out</a></li>
+            <li><img
+                src="/images/virtual-reality.png"
+                alt=""
+                height="30px"
+                width="30px"
+              /></li>
           {{else}}
             <li><a href="/auth/login">Log In</a></li>
             <li><a href="/auth/signup">Sign up</a></li>
