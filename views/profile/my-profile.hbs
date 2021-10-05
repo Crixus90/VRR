@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/stylesheets/profile-style.css" />
+
+<div class="profile">
+  <div class="profile-info">
+    <img
+      class="profile-pic"
+      src="{{user.image}}"
+      alt="profile pic"
+      width="200px"
+      height="200px"
+    />
+    <div class="info">
+      <h1>{{user.username}}</h1>
+      <h2>{{user.headset}}</h2>
+      <p>{{user.bio}}</p>
+    </div>
+    <a href="/profile/update-profile">Edit Profile</a>
+  </div>
+</div>

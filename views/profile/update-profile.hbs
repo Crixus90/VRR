@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="/stylesheets/signup-login-style.css" />
 <div class="container">
-  <h1>Signup</h1>
+  <h1>Edit Profile</h1>
 
   <div class="error-message">
     {{#if errorMessage}}
       <p style="color: red">{{errorMessage}}</p>
     {{/if}}
   </div>
-  <form action="/auth/signup" method="POST">
+  <form action="/profile/update-profile" method="POST">
     <div class="row">
       <div class="col-25">
         <label for="fname">Username</label>
@@ -17,7 +17,7 @@
           type="text"
           id="fname"
           name="username"
-          value="{{username}}"
+          value="{{user.username}}"
           required
         />
       </div>
@@ -31,17 +31,23 @@
           type="email"
           id="lname"
           name="email"
-          value="{{email}}"
+          value="{{user.email}}"
           required
         />
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="lname">Password</label>
+        <label>Bio</label>
       </div>
       <div class="col-75">
-        <input type="password" id="lname" name="password" required />
+        <textarea
+          id="subject"
+          name="bio"
+          style="height:100px"
+          placeholder="Tell us about yaself guv'nor"
+          maxlength="100"
+        >{{user.bio}}</textarea>
       </div>
     </div>
     <div class="row">
@@ -60,7 +66,8 @@
       </div>
     </div>
     <div class="row">
-      <input type="submit" value="Signup" />
+      <a href="/profile/my-profile">go back</a>
+      <input type="submit" value="Update" />
     </div>
   </form>
 </div>

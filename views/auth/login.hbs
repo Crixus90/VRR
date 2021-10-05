@@ -1,18 +1,46 @@
-<h1>Login page</h1>
-<br /><br />
-<form action="/auth/login" method="POST">
-  <label>Username</label>
-  <input type="text" name="username" />
-  <br /><br />
-  <label>Password</label>
-  <input type="password" name="password" />
-  <br /><br />
-  <button type="submit">Log in</button>
+<link rel="stylesheet" href="/stylesheets/signup-login-style.css" />
 
-</form>
+{{! <div class="container">
+  <h2>Log in</h2>
+  <form action="/auth/login" method="POST">
+    <div class="input">
+      <input type="text" name="username" required />
+      <label for="">Username</label>
+    </div>
+    <div class="input">
+      <input type="password" name="password" required />
+      <label for="Password"></label>
+    </div>
+    <button type="submit">Log in</button>
+  </form>
+</div> }}
 
-<div class="error-message">
-  {{#if errorMessage}}
-    <p style="color: red">{{errorMessage}}</p>
-  {{/if}}
+<div class="container">
+  <h1>Log in</h1>
+  <div class="error-message">
+    {{#if errorMessage}}
+      <p style="color: red">{{errorMessage}}</p>
+    {{/if}}
+  </div>
+  <form action="/auth/login" method="POST">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Username</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="username" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Password</label>
+      </div>
+      <div class="col-75">
+        <input type="password" id="lname" name="password" />
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
 </div>

@@ -1,25 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
 
+:root {
+  --text-color: rgb(37, 37, 37);
+  --btn-color: rgb(152, 212, 236);
+  --box-shadow: box-shadow: 0px 0px 2px 1px #858585;
+  --bg-color: rgb(196, 196, 196);
+  --fg-color: white;
+  --font-color: rgb(37, 37, 37);
+}
+
 * {
   font-family: "Oswald", sans-serif;
   font-size: 20px;
-
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 
 body {
-  background-color: rgb(180, 180, 180);
+  background-color: var(--bg-color);
+}
+
+header {
+  background: cyan;
+  color: var(--font-color);
+  font-weight: bold;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .links-container {
-  padding: 0 200px;
+  padding: 0.1em 8em;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 3px 2px #858585;
+  background-color: var(--fg-color);
+  box-shadow: 0px 0px 2px 1px #858585;
 }
 
 .logo-search {
@@ -28,19 +44,26 @@ body {
   gap: 20px;
 }
 
-.searchbar input {
-  border: 0;
-  padding: 0;
-  z-index: 1;
-  background-color: transparent;
-  border: 2px solid rgb(134, 134, 134);
-  border-radius: 10px;
+.searchbar-bg {
+  background-color: var(--bg-color);
+  border-radius: 20px 20px;
 }
-.searchbar button {
+
+.searchbar-bg input[type="text"] {
+  width: 80%;
   border: 0;
-  padding: 0;
-  z-index: 1;
+  padding: 0.3em;
   background-color: transparent;
+  outline: none;
+}
+
+.searchbar-bg button {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+}
+.searchbar-bg button:hover {
+  cursor: pointer;
 }
 
 .nav-links {
@@ -55,13 +78,58 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: black;
-  font-weight: bold;
+  color: var(--text-color);
 }
 
 .create-post-btn {
   padding: 4px;
-  background-color: rgb(152, 212, 236);
+  background-color: var(--btn-color);
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 1px #858585;
+  box-shadow: var(--box-shadow);
+}
+
+/* dropdown */
+/* Dropdown Button */
+.dropbtn {
+  border-radius: 5px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--fg-color);
+  min-width: 160px;
+  box-shadow: var(--box-shadow);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #e4e4e4;
+  cursor: pointer;
 }

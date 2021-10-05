@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{title}}</title>
+    <title>VRR</title>
+    <link rel="shortcut icon" href="/images/vrrlogo.png" type="image/x-icon" />
     <link rel="stylesheet" href="/stylesheets/layout-style.css" />
   </head>
 
@@ -19,9 +20,9 @@
               height="50px"
               width="50px"
             /></a>
-          <div class="searchbar">
+          <div class="searchbar-bg">
             <form action="">
-              <input type="text" name="" />
+              <input type="text" name="" placeholder="Search..." />
               <button type="submit">🔍</button>
             </form>
           </div>
@@ -30,13 +31,23 @@
         <ui class="nav-links">
           {{#if user}}
             <li><a class="create-post-btn" href="/">Create Post</a></li>
-            <li><a href="/auth/logout">Log Out</a></li>
-            <li><img
-                src="/images/virtual-reality.png"
-                alt=""
-                height="30px"
-                width="30px"
-              /></li>
+            <li>
+              <div class="dropdown">
+                <a href="/profile/my-profile"><img
+                    class="dropbtn"
+                    src="/images/virtual-reality.png"
+                    alt=""
+                    height="30px"
+                    width="30px"
+                  /></a>
+                <div class="dropdown-content">
+                  <a href="/profile/my-profile">Profile</a>
+                  <a href="/profile/update-profile">Edit Profile</a>
+                  <a href="/auth/logout">Log Out</a>
+                </div>
+              </div>
+
+            </li>
           {{else}}
             <li><a href="/auth/login">Log In</a></li>
             <li><a href="/auth/signup">Sign up</a></li>

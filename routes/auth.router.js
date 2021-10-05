@@ -33,58 +33,52 @@ router.post("/signup", isNotLoggedIn, (req, res) => {
     });
     return;
   }
-  User.findOne({ email })
-    .then((foundEmail) => {
+
+  User.findOne({ email }).then((foundCredentials) => {
+    if (foundCredentials) {
       res.render("auth/signup", {
-        errorMessage: "Email already in use",
+        errorMessage: "Email already exists",
         ...req.body,
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.render("auth/signup", {
-        errorMessage: "Oh no something went dredfully wrong!",
-        ...req.body,
-      });
-    });
-
-  User.findOne({ username })
-    .then((foundUser) => {
-      if (foundUser) {
-        res.render("auth/signup", {
-          errorMessage: "Username taken",
-          ...req.body,
-        });
-        return;
-      }
-
-      //password encrypting
-      const saltRounds = 10;
-      const saltGenerated = bcrypt.genSaltSync(saltRounds);
-
-      const hashIt = bcrypt.hashSync(password, saltGenerated);
-
-      //add user to database
-      User.create({ username, email, password: hashIt, headset })
-        .then((createdUser) => {
-          console.log(createdUser);
-          res.redirect("/auth/login");
-        })
-        .catch((err) => {
-          console.log(err);
+      return;
+    }
+    User.findOne({ username })
+      .then((foundCredentials) => {
+        if (foundCredentials) {
           res.render("auth/signup", {
-            errorMessage: "Oh no something went dredfully wrong!",
+            errorMessage: "Username already exists",
             ...req.body,
           });
+          return;
+        }
+        //password encrypting
+        const saltRounds = 10;
+        const saltGenerated = bcrypt.genSaltSync(saltRounds);
+
+        const hashIt = bcrypt.hashSync(password, saltGenerated);
+
+        //add user to database
+        User.create({ username, email, password: hashIt, headset })
+          .then((createdUser) => {
+            console.log(createdUser);
+            res.redirect("/auth/login");
+          })
+          .catch((err) => {
+            console.log(err);
+            res.render("auth/signup", {
+              errorMessage: "Oh no something went dredfully wrong!",
+              ...req.body,
+            });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.render("auth/signup", {
+          errorMessage: "Oh no something went dredfully wrong!",
+          ...req.body,
         });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.render("auth/signup", {
-        errorMessage: "Oh no something went dredfully wrong!",
-        ...req.body,
       });
-    });
+  });
 });
 //signup
 

@@ -20,8 +20,10 @@ const userSchema = new Schema({
   },
   image: {
     type: String,
-    default:
-      "https://images.clipartlogo.com/files/istock/previews/1013/101367273-man-with-virtual-reality-headset-icon-vector.jpg",
+    default: "/images/virtual-reality.png",
+  },
+  bio: {
+    type: String,
   },
 });
 
