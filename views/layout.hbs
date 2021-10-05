@@ -30,9 +30,11 @@
 
         <ui class="nav-links">
           {{#if user}}
-            <li><a class="create-post-btn" href="/">Create Post</a></li>
+            <li><a class="create-post-btn" href="/posts/create">Create Post</a></li>
+            <h3>{{user.username}}</h3>
             <li>
               <div class="dropdown">
+
                 <a href="/profile/my-profile"><img
                     class="dropbtn"
                     src="/images/virtual-reality.png"
@@ -43,10 +45,11 @@
                 <div class="dropdown-content">
                   <a href="/profile/my-profile">Profile</a>
                   <a href="/profile/update-profile">Edit Profile</a>
+                  <a href="/profile/update-password">Change Password</a>
                   <a href="/auth/logout">Log Out</a>
+                  <a href="/profile/delete-account">Delete Account</a>
                 </div>
               </div>
-
             </li>
           {{else}}
             <li><a href="/auth/login">Log In</a></li>

@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/stylesheets/signup-login-style.css" />
+<div class="container">
+  <h1>Create Post</h1>
+
+  <div class="error-message">
+    {{#if errorMessage}}
+      <p style="color: red">{{errorMessage}}</p>
+    {{/if}}
+  </div>
+  <form action="/posts/create" method="POST">
+    <div class="row">
+      <div class="col-75">
+        <input
+          type="text"
+          id="fname"
+          name="title"
+          required
+          placeholder="Post title here..."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-75">
+        <textarea
+          id="subject"
+          name="bio"
+          style="height:100px"
+          placeholder="{{randomExpression}}"
+          maxlength="100"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <a href="/profile/my-profile">go back</a>
+      <input type="submit" value="Submit Post!" />
+    </div>
+  </form>
+</div>
