@@ -25,7 +25,10 @@ router.post("/update-profile", isLoggedIn, (req, res) => {
     return;
   }
   User.findOne({ email }).then((foundCredentials) => {
-    if (foundCredentials) {
+    if (
+      foundCredentials &&
+      foundCredentials._id.toString() !== req.session.user._id.toString()
+    ) {
       res.render("profile/update-profile", {
         errorMessage: "Email already exists",
         ...req.body,
@@ -33,7 +36,10 @@ router.post("/update-profile", isLoggedIn, (req, res) => {
       return;
     }
     User.findOne({ username }).then((foundCredentials) => {
-      if (foundCredentials) {
+      if (
+        foundCredentials &&
+        foundCredentials._id.toString() !== req.session.user._id.toString()
+      ) {
         res.render("profile/update-profile", {
           errorMessage: "Username already exists",
           ...req.body,
