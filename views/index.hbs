@@ -12,4 +12,13 @@
       <li><a href="/">Random</a></li>
     </ul>
   </div>
+
+  {{#each allPosts}}
+    <a href="/posts/{{this._id}}"><div class="post-div">
+        <h2>{{this.title}}</h2>
+        <p>{{this.post}}</p>
+      </div></a>
+    <br />
+
+  {{/each}}
 </div>

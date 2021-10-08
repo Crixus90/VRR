@@ -2,8 +2,18 @@ const router = require("express").Router();
 const isNotLoggedIn = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const User = require("../models/User.model");
+const Comment = require("../models/Comments.model");
+const Post = require("../models/Posts.model");
 
-router.get("/create", (req, res) => {
+router.get("/:id", (req, res) => {
+  Post.findById(req.params.id)
+    .populate("author")
+    .then((thePost) => {
+      res.render("posts/post", { post: thePost });
+    });
+});
+
+router.get("/create", isLoggedIn, (req, res) => {
   const expressions = [
     "What's in your head?",
     "Got a lot on your mind?",
@@ -20,8 +30,19 @@ router.get("/create", (req, res) => {
   res.render("posts/create-post", { randomExpression });
 });
 
-router.post("/create", (req, res) => {
-  const { title, author } = req.body;
+router.post("/create", isLoggedIn, (req, res) => {
+  const { title, post } = req.body;
+
+  Post.create({
+    title,
+    post,
+    author: req.session.user._id,
+  })
+    .then((createdPost) => {
+      console.log(createdPost);
+      res.redirect("/");
+    })
+    .catch();
 });
 
 module.exports = router;

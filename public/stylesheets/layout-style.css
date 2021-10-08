@@ -19,6 +19,9 @@
 
 body {
   background-color: var(--bg-color);
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
 }
 
 header {
@@ -132,4 +135,9 @@ header {
 .dropdown:hover .dropbtn {
   background-color: #e4e4e4;
   cursor: pointer;
+}
+
+footer {
+  height: 100%;
+  background-color: white;
 }

@@ -2,7 +2,12 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
-    text: {
+    likes: {
+      type: Number,
+      ref: "User",
+    },
+    title: String,
+    post: {
       type: String,
       required: true,
     },
@@ -10,11 +15,10 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    title: String,
     hashtag: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Hashtag",
+        ref: "Tag",
       },
     ],
   },
