@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/stylesheets/signup-login-style.css" />
+<div class="container">
+  <h1>Contact Us</h1>
+
+  <div class="error-message">
+    {{#if errorMessage}}
+      <p style="color: red">{{errorMessage}}</p>
+    {{/if}}
+  </div>
+  <form action="/contact" method="POST">
+    <div class="row">
+      <div class="col-75">
+        <input type="text" id="fname" name="name" required placeholder="name" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-75">
+        <input
+          type="text"
+          id="fname"
+          name="email"
+          required
+          placeholder="email"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-75">
+        <input
+          type="text"
+          id="fname"
+          name="subject"
+          required
+          placeholder="subject"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-75">
+        <textarea
+          id="subject"
+          name="message"
+          style="height:100px"
+          placeholder="Message"
+          maxlength="100"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <a href="/">go back</a>
+      <input type="submit" value="Send" />
+    </div>
+  </form>
+</div>

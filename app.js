@@ -44,6 +44,9 @@ app.use("/profile", profileRouter);
 const postRouter = require("./routes/posts.router");
 app.use("/posts", postRouter);
 
+const contactRouter = require("./routes/contact.router");
+app.use("/contact", contactRouter);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

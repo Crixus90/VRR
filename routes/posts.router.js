@@ -5,14 +5,6 @@ const User = require("../models/User.model");
 const Comment = require("../models/Comments.model");
 const Post = require("../models/Posts.model");
 
-router.get("/:id", (req, res) => {
-  Post.findById(req.params.id)
-    .populate("author")
-    .then((thePost) => {
-      res.render("posts/post", { post: thePost });
-    });
-});
-
 router.get("/create", isLoggedIn, (req, res) => {
   const expressions = [
     "What's in your head?",
@@ -37,12 +29,18 @@ router.post("/create", isLoggedIn, (req, res) => {
     title,
     post,
     author: req.session.user._id,
-  })
-    .then((createdPost) => {
-      console.log(createdPost);
-      res.redirect("/");
-    })
-    .catch();
+  }).then((createdPost) => {
+    console.log(createdPost);
+    res.redirect("/");
+  });
+});
+
+router.get("/:id", (req, res) => {
+  Post.findById(req.params.id)
+    .populate("author")
+    .then((thePost) => {
+      res.render("posts/post", { post: thePost });
+    });
 });
 
 module.exports = router;
