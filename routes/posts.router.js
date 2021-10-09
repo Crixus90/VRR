@@ -4,6 +4,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const User = require("../models/User.model");
 const Comment = require("../models/Comments.model");
 const Post = require("../models/Posts.model");
+const compareIds = require("../utils/CompareIds");
 
 router.get("/create", isLoggedIn, (req, res) => {
   const expressions = [
@@ -22,6 +23,7 @@ router.get("/create", isLoggedIn, (req, res) => {
   res.render("posts/create-post", { randomExpression });
 });
 
+//createPost
 router.post("/create", isLoggedIn, (req, res) => {
   const { title, post } = req.body;
 
@@ -35,12 +37,47 @@ router.post("/create", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/:id", (req, res) => {
+function findPostId(req, res, next) {
   Post.findById(req.params.id)
     .populate("author")
-    .then((thePost) => {
-      res.render("posts/post", { post: thePost });
+    .then((singlePost) => {
+      if (!singlePost) {
+        return res.redirect("/");
+      }
+
+      req.post = singlePost;
+
+      next();
     });
+}
+
+router.get("/:id", findPostId, (req, res) => {
+  let isAuthor = false;
+  if (req.session.user) {
+    if (compareIds(req.session.user._id, req.post.author._id)) {
+      isAuthor = true;
+    }
+    return res.render("posts/post", { post: req.post, isAuthor });
+  }
+});
+
+router.get("/:id/edit", isLoggedIn, findPostId, (req, res) => {
+  if (!compareIds(req.session.user._id, req.post.author._id)) {
+    return res.redirect(`/posts/${req.params.id}`);
+  }
+  res.render("posts/edit-single-post", { post: req.post });
+});
+
+router.post(":id/edit", isLoggedIn, findPostId, (req, res) => {
+  const { title, post } = req.body;
+
+  if (!compareIds(req.session.user._id, req.post.author._id)) {
+    return res.redirect(`/posts/${req.post._id}`);
+  }
+
+  return Post.findByIdAndUpdate(req.post._id, { title, post }).then(() => {
+    res.redirect(`/posts/${req.post.id}`);
+  });
 });
 
 module.exports = router;

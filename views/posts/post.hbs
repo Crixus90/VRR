@@ -2,4 +2,10 @@
 <p>{{post.post}}</p>
 <h4>by {{post.author.username}}</h4>
 
-<a href="/posts/edit-single-Post">Edit Post</a>
+{{#if isAuthor}}
+  <div>
+    <a href="/posts/{{post._id}}/edit">Edit this post</a>
+    <br />
+    <a href="/posts/{{post._id}}/delete">Delete this post</a>
+  </div>
+{{/if}}
