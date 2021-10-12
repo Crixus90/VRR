@@ -68,7 +68,7 @@ router.get("/:id/edit", isLoggedIn, findPostId, (req, res) => {
   res.render("posts/edit-single-post", { post: req.post });
 });
 
-router.post(":id/edit", isLoggedIn, findPostId, (req, res) => {
+router.post("/:id/edit", isLoggedIn, findPostId, (req, res) => {
   const { title, post } = req.body;
 
   if (!compareIds(req.session.user._id, req.post.author._id)) {
@@ -76,8 +76,21 @@ router.post(":id/edit", isLoggedIn, findPostId, (req, res) => {
   }
 
   return Post.findByIdAndUpdate(req.post._id, { title, post }).then(() => {
-    res.redirect(`/posts/${req.post.id}`);
+    res.redirect(`/posts/${req.post._id}`);
   });
+});
+
+router.get("/:id/delete", isLoggedIn, findPostId, async (req, res) => {
+  const isAuthor = compareIds(req.session.user._id, req.post.author._id);
+
+  if (!isAuthor) {
+    return res.redirect(`/posts/${req.params.id}`);
+  }
+
+  // await Comment.deleteMany({ post: {$in: [req.post._id] } });
+  await Post.findByIdAndDelete(req.post._id);
+
+  res.redirect("/");
 });
 
 module.exports = router;

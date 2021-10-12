@@ -2,6 +2,8 @@ const router = require("express").Router();
 const isNotLoggedIn = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const User = require("../models/User.model");
+const Post = require("../models/Posts.model");
+const Comment = require("../models/Comments.model");
 const bcrypt = require("bcrypt");
 
 router.get("/my-profile", isLoggedIn, (req, res) => {
@@ -114,6 +116,13 @@ router.get("/delete-account", isLoggedIn, async (req, res) => {
   const userId = req.session.user._id;
 
   await User.findByIdAndDelete(userId);
+  //await Comment.deleteMany({ user: userId });
+  // await Promise.all([User.findByIdAndDelete(userId), Comment.deleteMany({ user: userId })])
+  const arrOfPostsFromUser = await Post.find({ author: userId });
+  const getPostIds = arrOfPostsFromUser.map((e) => e._id);
+  //await Comment.deleteMany({ post: { $in: getPostIds } });
+  await Post.deleteMany({ _id: { $in: getPostIds } });
+  // await Promise.all([Comment.deleteMany({ post: { $in: getPostIds } }, ), Post.deleteMany({ _id: { $in: getPostIds } })])
 
   req.session.destroy((err) => {
     if (err) {
