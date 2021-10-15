@@ -14,6 +14,7 @@
       <div class="post-div">
         <a href="/posts/{{this._id}}">
           <h2>{{this.title}}</h2>
+          <h3>{{#if this.game}} Game: {{/if}} {{this.game}}</h3>
           <p>{{this.post}}</p>
         </a>
       </div>
@@ -22,6 +23,7 @@
       <div class="post-div">
         <a href="/posts/{{this._id}}">
           <h2>{{this.title}}</h2>
+          <h3>{{this.game}}</h3>
           <p>{{this.post}}</p>
         </a>
       </div>
@@ -30,6 +32,7 @@
       <div class="post-div">
         <a href="/posts/{{randomPost._id}}">
           <h2>{{randomPost.title}}</h2>
+          <h3>{{randomPost.game}}</h3>
           <p>{{randomPost.post}}</p>
         </a>
       </div>

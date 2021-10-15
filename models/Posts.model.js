@@ -9,6 +9,7 @@ const postSchema = new mongoose.Schema(
       },
     ],
     title: String,
+    game: String,
     post: {
       type: String,
       required: true,

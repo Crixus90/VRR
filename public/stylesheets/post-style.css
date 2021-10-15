@@ -1,0 +1,29 @@
+.container {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 50%;
+  gap: 14px 0px;
+  justify-content: center;
+  justify-items: stretch;
+}
+
+.post-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 1em;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+}
+
+.title {
+  font-size: xx-large;
+  margin-bottom: 1em;
+}
+.title1 {
+  font-size: x-large;
+  margin-bottom: 1em;
+}

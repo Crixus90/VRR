@@ -1,14 +1,28 @@
-<h1>{{post.title}}</h1>
-<p>{{post.post}}</p>
-<h4>by {{post.author.username}}</h4>
+<link rel="stylesheet" href="/stylesheets/post-style.css" />
 
-{{#if isAuthor}}
-  <div>
-    <a href="/posts/{{post._id}}/edit">Edit this post</a>
-    <br />
-    <a href="/posts/{{post._id}}/delete">Delete this post</a>
+<div class="container">
+  <div class="post-container">
+    <h1 class="title">{{post.title}}</h1>
+    <h2 class="title1">{{#if post.game}} Game: {{/if}}{{post.game}}</h2>
+    <p>{{post.post}}</p>
+    <h4>by {{post.author.username}}</h4>
+    {{#if post.headset}}
+      <h5>{{headset}}</h5>
+    {{/if}}
+
+    {{#if isAuthor}}
+      <div>
+        <a href="/posts/{{post._id}}/edit">Edit this post</a>
+        <br />
+        <a href="/posts/{{post._id}}/delete">Delete this post</a>
+      </div>
+    {{/if}}
+    <button
+      class="btn"
+      onclick="like(event)"
+      data-postid="{{post._id}}"
+    >💗</button>
   </div>
-{{/if}}
-<button onclick="like(event)" data-postid="{{post._id}}">💗</button>
+</div>
 
 <script src="/js/likes.js"></script>

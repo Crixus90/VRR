@@ -25,12 +25,14 @@ router.get("/create", isLoggedIn, (req, res) => {
 
 //createPost
 router.post("/create", isLoggedIn, (req, res) => {
-  const { title, post } = req.body;
+  const { title, game, post } = req.body;
 
   Post.create({
     title,
     post,
+    game,
     author: req.session.user._id,
+    headset: req.session.user.headset,
   }).then((createdPost) => {
     console.log(createdPost);
     res.redirect("/");

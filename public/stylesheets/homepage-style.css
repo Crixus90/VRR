@@ -23,6 +23,7 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  padding: 1em;
 }
 
 .filters {
@@ -38,4 +39,8 @@ a {
 .filters li a {
   text-decoration: none;
   color: black;
+}
+
+h3 {
+  color: rgb(66, 216, 78);
 }
