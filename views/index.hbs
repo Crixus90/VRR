@@ -3,22 +3,59 @@
 
 {{! content }}
 
-<div class="feed-container">
+<div class="container">
+  <div class="filters">
+    <a href="/posts/new">New</a>
+    <a href="/">Old</a>
+    <a href="/posts/random">Random</a>
+  </div>
+  <div class="post-container">
+    {{#each allPosts}}
+      <div class="post-div">
+        <a href="/posts/{{this._id}}">
+          <h2>{{this.title}}</h2>
+          <p>{{this.post}}</p>
+        </a>
+      </div>
+    {{/each}}
+    {{#each postsInOrder}}
+      <div class="post-div">
+        <a href="/posts/{{this._id}}">
+          <h2>{{this.title}}</h2>
+          <p>{{this.post}}</p>
+        </a>
+      </div>
+    {{/each}}
+    {{#if randomPost}}
+      <div class="post-div">
+        <a href="/posts/{{randomPost._id}}">
+          <h2>{{randomPost.title}}</h2>
+          <p>{{randomPost.post}}</p>
+        </a>
+      </div>
+    {{/if}}
+
+  </div>
+</div>
+
+{{!-- <div class="feed-container">
   <div class="feed">
     <h1><a href="/">Feed</a></h1>
-    <ul class="filters">
-      <li><a href="/">New</a></li>
-      <li><a href="/">Top</a></li>
-      <li><a href="/">Random</a></li>
-    </ul>
+    
+    <div class="post-container">
+      {{#each allPosts}}
+        <a href="/posts/{{this._id}}"><div class="post-div">
+            <h2>{{this.title}}</h2>
+            <p>{{this.post}}</p>
+          </div></a>
+      {{/each}}
+    </div>
   </div>
-
-  {{#each allPosts}}
+  {{#each postsInOrder}}
     <a href="/posts/{{this._id}}"><div class="post-div">
         <h2>{{this.title}}</h2>
         <p>{{this.post}}</p>
       </div></a>
-    <br />
-
   {{/each}}
-</div>
+
+</div> --}}

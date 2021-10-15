@@ -51,6 +51,24 @@ function findPostId(req, res, next) {
     });
 }
 
+router.get("/new", (req, res) => {
+  Post.find({})
+    .sort({ createdAt: "desc" })
+    .then((postsInOrder) => {
+      accOrder = true;
+      res.render("index", { postsInOrder });
+    });
+});
+
+router.get("/random", (req, res) => {
+  Post.find({}).then((foundPosts) => {
+    const randomPost =
+      foundPosts[Math.floor(Math.random() * foundPosts.length)];
+
+    res.render("index", { randomPost });
+  });
+});
+
 router.get("/:id", findPostId, (req, res) => {
   let isAuthor = false;
   if (req.session.user) {
@@ -92,5 +110,7 @@ router.get("/:id/delete", isLoggedIn, findPostId, async (req, res) => {
 
   res.redirect("/");
 });
+
+//filters
 
 module.exports = router;
